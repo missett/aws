@@ -3,6 +3,8 @@ resource "aws_iam_user" "ryanmissett_blog_github_deploy" {
 }
 
 data "aws_iam_policy_document" "ryanmissett_blog_github_deploy_policy" {
+  # backend management
+
   statement {
     effect = "Allow"
     actions = [
@@ -20,6 +22,19 @@ data "aws_iam_policy_document" "ryanmissett_blog_github_deploy_policy" {
     ]
     resources = [
       "arn:aws:s3:::ryanmissett-terraform-backend"
+    ]
+  }
+
+  # blog resource management
+
+  statement {
+    effect = "Allow"
+    actions = [
+      "s3:*"
+    ]
+    resources = [
+      "arn:aws:s3:::ryanmissett-blog-frontend",
+      "arn:aws:s3:::ryanmissett-blog-frontend/*",
     ]
   }
 }

@@ -15,6 +15,7 @@ data "aws_iam_policy_document" "ryanmissett_blog_github_deploy_policy" {
       "arn:aws:s3:::ryanmissett-terraform-backend/blog"
     ]
   }
+
   statement {
     effect = "Allow"
     actions = [
@@ -35,6 +36,16 @@ data "aws_iam_policy_document" "ryanmissett_blog_github_deploy_policy" {
     resources = [
       "arn:aws:s3:::ryanmissett-blog-frontend",
       "arn:aws:s3:::ryanmissett-blog-frontend/*",
+    ]
+  }
+
+  statement {
+    effect = "Allow"
+    actions = [
+      "cloudfront:*"
+    ]
+    resources = [
+      "arn:aws:cloudfront::635451031443:*",
     ]
   }
 }
